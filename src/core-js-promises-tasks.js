@@ -47,7 +47,7 @@ function getPromiseResult(src) {
  * Takes an array of promises and returns a promise that resolves with the value of the first successfully resolved promise From the given array.
  * If all promises in the array are rejected, it returns a promise that is rejected.
  *
- * @param {Array<Promise<number>>} promises
+ * @param {Array<Promise<number>>} result
  * @return {Promise<number>}
  *
  * @example:
@@ -56,8 +56,8 @@ function getPromiseResult(src) {
  * [Promise.resolve(1), Promise.reject(2), Promise.resolve(3)]  => Promise fulfilled with 1
  * [Promise.reject(1), Promise.reject(2), Promise.reject(3)]    => Promise rejected
  */
-function getFirstResolvedPromiseResult(/* promises */) {
-  throw new Error('Not implemented');
+function getFirstResolvedPromiseResult(result) {
+  return Promise.any(result);
 }
 
 /**
