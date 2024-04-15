@@ -119,7 +119,7 @@ function getAllResult(result) {
  * The resolution order is determined by the order of the promises in the array, not by their resolution time.
  * Static methods of the Promise class are not to be used, necessitating a manual chaining approach to ensure sequential processing.
  *
- * @param {Array<Promise<number>>} promises
+ * @param {Array<Promise<number>>} result
  * @return {Promise<string>}
  *
  * @example:
@@ -132,7 +132,7 @@ function getAllResult(result) {
  * [promise1, promise4, promise3] => Promise.resolved('104030')
  * [promise1, promise4, promise3, promise2] => Promise.resolved('10403020')
  */
-function queuPromises(/* promises */) {
+function queuPromises(/* result */) {
   throw new Error('Not implemented');
 }
 
