@@ -63,7 +63,7 @@ function getFirstResolvedPromiseResult(result) {
 /**
  * Returns containing the value of the first promise of a resolved or a rejected.
  *
- * @param {Array<Promise<number>>} promises
+ * @param {Array<Promise<number>>} result
  * @return {Promise<number>}
  *
  * @example:
@@ -79,23 +79,23 @@ function getFirstResolvedPromiseResult(result) {
  * [promise3, promise6, promise2] => Promise rejected with 2
  * [promise3, promise4, promise6] => Promise rejected with 6
  */
-function getFirstPromiseResult(/* promises */) {
-  throw new Error('Not implemented');
+function getFirstPromiseResult(result) {
+  return Promise.race(result);
 }
 
 /**
  * Attempts to resolve all provided promises. If all promises resolve successfully, it returns a promise that resolves with an array of their values.
  * If any of the promises are rejected, it returns a promise that is immediately rejected with the reason of the first promise that was rejected.
  *
- * @param {Array<Promise<number>>} promises
+ * @param {Array<Promise<number>>} result
  * @return {Promise<Array<number>> }
  *
  * @example:
  * [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)] => Promise fulfilled with [1, 2, 3]
  * [Promise.resolve(1), Promise.reject(2), Promise.resolve(3)] => Promise rejected with 2
  */
-function getAllOrNothing(/* promises */) {
-  throw new Error('Not implemented');
+function getAllOrNothing(result) {
+  return Promise.all(result);
 }
 
 /**
@@ -103,15 +103,15 @@ function getAllOrNothing(/* promises */) {
  * Each element in the returned array corresponds to the resolved value of the promise at the same index in the input array.
  * If a promise is rejected, the corresponding value in the output array will be null.
  *
- * @param {Array<Promise<number>>} promises
+ * @param {Array<Promise<number>>} result
  * @return {Promise<Array<number | null>>}
  *
  * @example:
  * [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)] => Promise fulfilled with [1, 2, 3]
  * [Promise.resolve(1), Promise.reject(2), Promise.resolve(3)]  => Promise fulfilled with [1, null, 3]
  */
-function getAllResult(/* promises */) {
-  throw new Error('Not implemented');
+function getAllResult(result) {
+  return Promise.all(result.map((a) => a.then((b) => b).catch(() => null)));
 }
 
 /**
